@@ -1,21 +1,9 @@
-
 # SoapUI Mock-Service Docker image
+
 This project builds a docker container for running a Mock-Service with SOAP-UI
 
 
-## Building the image
-
-Before running the build:
-
-1. Install [Docker](https://www.docker.io/gettingstarted/#1)
-2. Setup the /distribution directory, by adding the JBoss EAP 6.4.0 zip distribution and any roll-up patch files (jboss-eap-6.4.0.zip / jboss-eap-6.4.x-patch.zip)
-3. Setup the /jce-unlimited directory, by adding the JCE unlimited policy files (local_policy.jar / US_export_policy.jar)
-4. Setup the /trusted-root-ca directory, by adding your trusted root CA files (in .pem format)
-
-Once you have completed steps 1..4 you can build an image using the following command:
-
-		$ docker build .
-
+## Running the image
 
 You can run the mock-service container interactively with the following command:
 
