@@ -2,8 +2,8 @@
 # Create an extensible SoapUI mock service runner image using CentOS
 #######################################################################
 
-# Use the centos 6.6 base image
-FROM centos:6.6 
+# Use the centos 6.7 base image
+FROM centos:6.7
 
 MAINTAINER fbascheper <temp01@fam-scheper.nl>
 
@@ -14,15 +14,14 @@ RUN yum -y update;yum clean all
 # Install Java JDK
 ##########################################################
 RUN yum -y install wget && \
-    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm && \
-    echo "50ae04f69743921dd6082dfe978672ad  jdk-8u45-linux-x64.rpm" >> MD5SUM && \
+    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u65-b17/jdk-8u65-linux-x64.rpm && \
+    echo "1e587aca2514a612b10935813b1cef28  jdk-8u65-linux-x64.rpm" >> MD5SUM && \
     md5sum -c MD5SUM && \
-    rpm -Uvh jdk-8u45-linux-x64.rpm && \
+    rpm -Uvh jdk-8u65-linux-x64.rpm && \
     yum -y remove wget && \
-    rm -f jdk-8u45-linux-x64.rpm MD5SUM
+    rm -f jdk-8u65-linux-x64.rpm MD5SUM
 
-
-ENV JAVA_HOME /usr/java/jdk1.8.0_45
+ENV JAVA_HOME /usr/java/jdk1.8.0_65
 
 
 ##########################################################
