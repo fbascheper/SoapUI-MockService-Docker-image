@@ -31,12 +31,12 @@ ENV JAVA_HOME /usr/java/jdk1.8.0_65
 RUN groupadd -r soapui && useradd -r -g soapui -m -d /home/soapui soapui
 
 RUN yum -y install wget && yum -y install tar && \
-    wget --no-check-certificate --no-cookies http://heanet.dl.sourceforge.net/project/soapui/soapui/5.1.3/SoapUI-5.1.3-linux-bin.tar.gz && \
-    echo "69497d409c2e6038f3c684741ffe3566  SoapUI-5.1.3-linux-bin.tar.gz" >> MD5SUM && \
+    wget --no-check-certificate --no-cookies http://cdn01.downloads.smartbear.com/soapui/5.2.1/SoapUI-5.2.1-linux-bin.tar.gz && \
+    echo "ba51c369cee1014319146474334fb4e1  SoapUI-5.2.1-linux-bin.tar.gz" >> MD5SUM && \
     md5sum -c MD5SUM && \
-    tar -xzf SoapUI-5.1.3-linux-bin.tar.gz -C /home/soapui && \
+    tar -xzf SoapUI-5.2.1-linux-bin.tar.gz -C /home/soapui && \
     yum -y remove wget && yum -y remove tar && \
-    rm -f SoapUI-5.1.3-linux-bin.tar.gz MD5SUM
+    rm -f SoapUI-5.2.1-linux-bin.tar.gz MD5SUM
 
 RUN chown -R soapui:soapui /home/soapui
 RUN find /home/soapui -type d -execdir chmod 770 {} \;
@@ -52,7 +52,7 @@ RUN yum -y install curl && \
 
 USER soapui
 ENV HOME /home/soapui
-ENV SOAPUI_DIR /home/soapui/SoapUI-5.1.3
+ENV SOAPUI_DIR /home/soapui/SoapUI-5.2.1
 ENV SOAPUI_PRJ /home/soapui/soapui-prj
 
 ############################################
