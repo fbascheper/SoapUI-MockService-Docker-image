@@ -28,14 +28,12 @@ ENV JAVA_HOME /usr/java/jdk1.8.0_92
 # Download and unpack soapui
 ##########################################################
 
-RUN groupadd -r soapui && useradd -r -g soapui -m -d /home/soapui soapui
+RUN groupadd -r -g 1000 soapui && useradd -r -u 1000 -g soapui -m -d /home/soapui soapui
 
-RUN yum -y install wget && yum -y install tar && \
-    wget --no-check-certificate --no-cookies http://cdn01.downloads.smartbear.com/soapui/5.2.1/SoapUI-5.2.1-linux-bin.tar.gz && \
+RUN curl -kLO http://cdn01.downloads.smartbear.com/soapui/5.2.1/SoapUI-5.2.1-linux-bin.tar.gz && \
     echo "ba51c369cee1014319146474334fb4e1  SoapUI-5.2.1-linux-bin.tar.gz" >> MD5SUM && \
     md5sum -c MD5SUM && \
     tar -xzf SoapUI-5.2.1-linux-bin.tar.gz -C /home/soapui && \
-    yum -y remove wget && yum -y remove tar && \
     rm -f SoapUI-5.2.1-linux-bin.tar.gz MD5SUM
 
 RUN chown -R soapui:soapui /home/soapui
