@@ -14,14 +14,14 @@ RUN yum -y update;yum clean all
 # Install Java JDK
 ##########################################################
 RUN yum -y install wget && \
-    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.rpm && \
-    echo "881ee6070efcb427204f04c98db9a173  jdk-8u92-linux-x64.rpm" >> MD5SUM && \
+    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm && \
+    echo "e7c0593a310b83b4ca69ea22f850c71f jdk-8u181-linux-x64.rpm" >> MD5SUM && \
     md5sum -c MD5SUM && \
-    rpm -Uvh jdk-8u92-linux-x64.rpm && \
+    rpm -Uvh jdk-8u181-linux-x64.rpm && \
     yum -y remove wget && \
-    rm -f jdk-8u92-linux-x64.rpm MD5SUM
+    rm -f jdk-8u181-linux-x64.rpm MD5SUM
 
-ENV JAVA_HOME /usr/java/jdk1.8.0_92
+ENV JAVA_HOME /usr/java/jdk1.8.0_181
 
 
 ##########################################################
@@ -30,18 +30,18 @@ ENV JAVA_HOME /usr/java/jdk1.8.0_92
 
 RUN groupadd -r -g 1000 soapui && useradd -r -u 1000 -g soapui -m -d /home/soapui soapui
 
-RUN curl -kLO http://cdn01.downloads.smartbear.com/soapui/5.2.1/SoapUI-5.2.1-linux-bin.tar.gz && \
-    echo "ba51c369cee1014319146474334fb4e1  SoapUI-5.2.1-linux-bin.tar.gz" >> MD5SUM && \
+RUN curl -kLO https://s3.amazonaws.com/downloads.eviware/soapuios/5.4.0/SoapUI-5.4.0-linux-bin.tar.gz && \
+    echo "151ebe65215b19898e31ccbf5d5ad68b SoapUI-5.4.0-linux-bin.tar.gz" >> MD5SUM && \
     md5sum -c MD5SUM && \
-    tar -xzf SoapUI-5.2.1-linux-bin.tar.gz -C /home/soapui && \
-    rm -f SoapUI-5.2.1-linux-bin.tar.gz MD5SUM
+    tar -xzf SoapUI-5.4.0-linux-bin.tar.gz -C /home/soapui && \
+    rm -f SoapUI-5.4.0-linux-bin.tar.gz MD5SUM
 
 RUN chown -R soapui:soapui /home/soapui
 RUN find /home/soapui -type d -execdir chmod 770 {} \;
 RUN find /home/soapui -type f -execdir chmod 660 {} \;
 
 RUN yum -y install curl && \
-    curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.3/gosu-amd64" && \
+    curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64" && \
     chmod +x /usr/local/bin/gosu
 
 ############################################
@@ -50,7 +50,7 @@ RUN yum -y install curl && \
 
 USER soapui
 ENV HOME /home/soapui
-ENV SOAPUI_DIR /home/soapui/SoapUI-5.2.1
+ENV SOAPUI_DIR /home/soapui/SoapUI-5.4.0
 ENV SOAPUI_PRJ /home/soapui/soapui-prj
 
 ############################################

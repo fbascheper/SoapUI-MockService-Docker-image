@@ -22,6 +22,23 @@ And of course you can also run it as a daemon, e.g. using:
         $ docker run --name soapui-daemon -d -e MOCK_SERVICE_NAME=BLZ-SOAP11-MockService  <<image-id>>
 
 
+## Mounting a local directory
+Thanks to @st63jun it is also possible to mount a host directory and deploy a mock service in a locally stored 
+SoapUI project XML file. The example below demonstrates this by downloading the SoapUI project in the docker image
+in a newly created ``soapui-test-project`` directory of the ``$HOME`` directory.
+
+````
+mkdir -p $HOME/soapui-test-project
+cd $HOME/soapui-test-project 
+wget https://raw.githubusercontent.com/fbascheper/SoapUI-MockService-Docker-image/master/soapui-prj/default-soapui-project.xml
+
+sudo docker run -p 8080:8080 -it --rm -e MOCK_SERVICE_NAME="BLZ-SOAP11-MockService" -v "$HOME/soapui-test-project:/home/soapui/soapui-prj/" -e PROJECT=/home/soapui/soapui-prj/default-soapui-project.xml --privileged fbascheper/soapui-mockservice-runner
+
+````
+
+If all goes well, you should now be able to access the WSDL at the location ``http://localhost:8080/BLZ-SOAP11-MockService?WSDL``
+
+
 ## Supported environment variables
 
 The following environment variables are supported:
