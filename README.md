@@ -39,7 +39,6 @@ in a newly created ``soapui-test-project`` directory of the ``$HOME`` directory.
             --privileged \
              <<image-id>>
 
-````
 
 If all goes well, you should now be able to access the WSDL at the location ``http://localhost:8080/BLZ-SOAP11-MockService?WSDL``
 
