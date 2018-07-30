@@ -1,0 +1,10 @@
+Docker image for running a SOAPUI mockservice.
+Copyright 2015-2018 Erik-Berndt Scheper and all contributors from the GIT log.
+
+This image is built on the Centos base image, downloads and installs an Oracle JDK and SoapUI.
+
+Furthermore, it includes a demonstration SoapUI project for the Bank BLZ Service (Bank Sort Codes) used by banks in
+Germany. The WSDL for this service is hosted at http://www.thomas-bayer.com/axis2/services/BLZService?wsdl.
+
+By using this image, or building your own dockerfile on top of this, you implicitly accept the
+license terms of the above products.
