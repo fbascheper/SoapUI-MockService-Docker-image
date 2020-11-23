@@ -2,8 +2,8 @@
 # Create an extensible SoapUI mock service runner image using CentOS
 #######################################################################
 
-# Use the openjdk 8 base image
-FROM openjdk:8
+# Use the openjdk 11 base image
+FROM adoptopenjdk/openjdk11
 
 MAINTAINER fbascheper <temp01@fam-scheper.nl>
 
@@ -13,11 +13,11 @@ MAINTAINER fbascheper <temp01@fam-scheper.nl>
 
 RUN groupadd -r -g 1000 soapui && useradd -r -u 1000 -g soapui -m -d /home/soapui soapui
 
-RUN curl -kLO https://s3.amazonaws.com/downloads.eviware/soapuios/5.4.0/SoapUI-5.4.0-linux-bin.tar.gz && \
-    echo "151ebe65215b19898e31ccbf5d5ad68b SoapUI-5.4.0-linux-bin.tar.gz" >> MD5SUM && \
+RUN curl -kLO https://s3.amazonaws.com/downloads.eviware/soapuios/5.6.0/SoapUI-5.6.0-linux-bin.tar.gz && \
+    echo "10be0158efbe3ab77eaf19c664454f03 SoapUI-5.6.0-linux-bin.tar.gz" >> MD5SUM && \
     md5sum -c MD5SUM && \
-    tar -xzf SoapUI-5.4.0-linux-bin.tar.gz -C /home/soapui && \
-    rm -f SoapUI-5.4.0-linux-bin.tar.gz MD5SUM
+    tar -xzf SoapUI-5.6.0-linux-bin.tar.gz -C /home/soapui && \
+    rm -f SoapUI-5.6.0-linux-bin.tar.gz MD5SUM
 
 RUN chown -R soapui:soapui /home/soapui
 RUN find /home/soapui -type d -execdir chmod 770 {} \;
@@ -35,7 +35,7 @@ RUN apt-get update \
 
 USER soapui
 ENV HOME /home/soapui
-ENV SOAPUI_DIR /home/soapui/SoapUI-5.4.0
+ENV SOAPUI_DIR /home/soapui/SoapUI-5.6.0
 ENV SOAPUI_PRJ /home/soapui/soapui-prj
 
 ############################################
