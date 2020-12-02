@@ -36,6 +36,7 @@ in a newly created ``soapui-test-project`` directory of the ``$HOME`` directory.
             -v "$HOME/soapui-test-project:/home/soapui/soapui-prj/" \
             -e MOCK_SERVICE_NAME="BLZ-SOAP11-MockService" \
             -e PROJECT=/home/soapui/soapui-prj/default-soapui-project.xml \
+            -e SOAPUI_LOGLEVEL=INFO \
             --privileged \
              <<image-id>>
 
@@ -71,6 +72,12 @@ The following environment variables are supported:
         <td>NO</td>
         <td>/home/soapui/soapui-prj/default-soapui-project.xml</td>
         <td>The complete path to the SoapUI project file</td>
+    </tr>
+    <tr>
+        <td><code>SOAPUI_LOGLEVEL</code></td>
+        <td>NO</td>
+        <td>WARN</td>
+        <td>Changes then default logging level, possible values ERROR, WARN, INFO, DEBUG</td>
     </tr>
 </table>
 
