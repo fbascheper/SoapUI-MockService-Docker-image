@@ -37,6 +37,7 @@ USER soapui
 ENV HOME /home/soapui
 ENV SOAPUI_DIR /home/soapui/SoapUI-5.4.0
 ENV SOAPUI_PRJ /home/soapui/soapui-prj
+ENV SOAPUI_LOGLEVEL WARN
 
 ############################################
 # Add customization sub-directories (for entrypoint)
@@ -51,6 +52,7 @@ USER root
 
 EXPOSE 8080
 
+COPY soapui-log4j.xml /home/soapui
 COPY docker-entrypoint.sh /
 RUN chmod 700 /docker-entrypoint.sh
 RUN chmod 770 $SOAPUI_DIR/bin/*.sh
