@@ -72,6 +72,13 @@ The following environment variables are supported:
         <td>/home/soapui/soapui-prj/default-soapui-project.xml</td>
         <td>The complete path to the SoapUI project file</td>
     </tr>
+    <tr>
+        <td><code>PORT</code></td>
+        <td>NO</td>
+        <td>8080</td>
+        <td>Port soapUI mock service started</td>
+    </tr>
+
 </table>
 
 
