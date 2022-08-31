@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #
 # Default usage: docker-entrypoint.sh start-soapui
@@ -34,7 +34,7 @@ if [ -z "$PROJECT" ]; then
 fi
 
 if [ -z "$MOCK_SERVICE_NAME" ]; then
-    echo "Enviromentment variable MOCK_SERVICE_NAME should have been set explicitly (e.g. by  -e MOCK_SERVICE_NAME=BLZ-SOAP11-MockService"
+    echo "Environment variable MOCK_SERVICE_NAME should have been set explicitly (e.g. by  -e MOCK_SERVICE_NAME=BLZ-SOAP11-MockService"
     exit 1
 fi
 
@@ -71,10 +71,10 @@ else
     gosu soapui "$@" <&3 &
 fi
 
-# wait for mocksevicerunner to exit
+# wait for mockservicerunner to exit
 PID=$!
 wait $PID
-# prevent another trap while mocksevicerunner is stopping
+# prevent another trap while mockservicerunner is stopping
 trap - TERM INT
 # wait for stop to complete
 wait $PID
